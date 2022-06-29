@@ -1,0 +1,9 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.models.FolhaPagamento;
+
+//public interface FolhaPagamentoRepository extends JpaRepository<FolhaPagamento, Integer> {
+	public interface FolhaPagamentoRepository
+}

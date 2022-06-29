@@ -1,0 +1,28 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.models;
+
+public class FolhaPagamento {
+	private int mes;
+	private int ano;
+	private int horas;
+	private double valor;
+	private double bruto;
+	private double irrf;
+	private double inss;
+	private double  fgts;
+	private double liquido;
+	private Funcionario funcionario;
+	
+	public FolhaPagamento() {
+		mes =0;
+		ano = 0;
+		horas = 0;
+		valor = 0;
+		bruto = 0.0;
+		irrf = 0.0;
+		inss = 0.0;
+		fgts = 0.0;
+		liquido = 0.0;
+		funcionario = 0.0;
+	}
+	
+}

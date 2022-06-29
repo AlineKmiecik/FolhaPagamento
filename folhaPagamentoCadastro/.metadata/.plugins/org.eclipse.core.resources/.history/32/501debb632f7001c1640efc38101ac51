@@ -1,0 +1,51 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.models.FolhaPagamento;
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.service.FolhaPagamentoService;
+
+@RestController
+@RequestMapping(path = "/folha")
+public class FolhaPagamentoController {
+	
+	@Autowired
+	FolhaPagamentoService folhaPagamentoService;
+	
+	@PostMapping("/cadastrar")
+    public ResponseEntity<FolhaPagamento> createCurso(@RequestBody @Valid FolhaPagamento folhaPagamento) throws ClientProtocolException, IOException {
+        
+        //Converte o DTO (requisição) em model
+        //BeanUtils.copyProperties(cursoDto, cursoModel);
+        cursoModel = converterCursoDto(cursoDto);
+        
+        if (cursoService.create(cursoModel).equals(StatusCursoEvento.SUCCESS) ){
+        	
+        	AlunoService alunoService = new AlunoService();
+        	
+        	for (AlunoModel aluno : cursoModel.getAlunos()) {
+        		if (alunoService.create(aluno).equals(StatusCursoEvento.SUCCESS) ){
+        			System.out.println(aluno.getNome() + " Cadastrado");
+        		}else {
+        			System.out.println(aluno.getNome() + " Não cadastrado"); 
+        		}
+			}
+        	
+        	//microsservice pho request 
+        	SendEmailMicrosservice(cursoDto);
+        	
+        	return new ResponseEntity<>(cursoModel, HttpStatus.CREATED);
+        	
+        }else {
+        	return new ResponseEntity<>(cursoModel, HttpStatus.CONFLICT);
+        }
+        
+    }
+
+}

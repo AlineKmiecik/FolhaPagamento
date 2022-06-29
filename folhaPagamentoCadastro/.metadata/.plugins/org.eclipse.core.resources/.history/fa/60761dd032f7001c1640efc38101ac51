@@ -1,0 +1,5 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.repositories;
+
+public class FuncionarioRepository {
+
+}

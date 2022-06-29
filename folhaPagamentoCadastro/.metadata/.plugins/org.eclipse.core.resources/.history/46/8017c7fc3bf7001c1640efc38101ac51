@@ -1,0 +1,36 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.RabbitMQ;
+
+@Component
+public class RabbitMQConsume {
+	@Autowired
+    CursoService cursoService;
+
+    @RabbitListener(queues = "${spring.rabbitmq.queue}")
+    public void listener(@Payload CursoDTO cursoDto) throws ClientProtocolException, IOException {
+        CursoModel cursoModel = new CursoModel();
+        cursoModel = converterCursoDto(cursoDto);
+        cursoService.create(cursoModel);
+        
+        //enviar mensagem
+        RabbitMQProducer produtor = new RabbitMQProducer();
+        RabbitMQConfig config = new RabbitMQConfig();
+		config.queue2();
+        produtor.sendEmail(cursoModel);
+    }
+    
+	/*
+	 * @RabbitHandler public void producer(@Payload CursoDTO cursoDto) throws
+	 * Exception { System.err.println("--------------------------------------");
+	 * System.err.println("Id curso cadastrado: " + cursoDto.getId()); //Long
+	 * deliveryTag = (Long)Headers(AmqpHeaders.DELIVERY_TAG); }
+	 */
+    
+    private CursoModel converterCursoDto (CursoDTO cursoDTO) {
+    	CursoModel cursoModel = new CursoModel();
+    	cursoModel.setAlunos(cursoDTO.getAlunos());
+    	cursoModel.setId(cursoDTO.getId());
+    	cursoModel.setNome(cursoDTO.getNome());
+    	return cursoModel;
+    }
+    
+}

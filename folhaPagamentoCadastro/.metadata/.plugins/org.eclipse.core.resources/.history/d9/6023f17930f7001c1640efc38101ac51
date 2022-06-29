@@ -1,0 +1,5 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.models;
+
+public class FolhaPagamento {
+
+}

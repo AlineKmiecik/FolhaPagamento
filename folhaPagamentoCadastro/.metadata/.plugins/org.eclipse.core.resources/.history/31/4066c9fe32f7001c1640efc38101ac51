@@ -1,0 +1,29 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.repositories.FolhaPagamentoRepository;
+
+@Service
+public class FolhaPagamentoService {
+	@Autowired
+	FolhaPagamentoRepository folhaPagamentoRepository;
+	
+	public Enum<StatusCursoEvento> create(CursoModel cursoModel) {
+		try {
+			cursoModel.setDataCriacaoCurso(LocalDateTime.now());
+			if(cursoRepository.existsByNome(cursoModel.getNome()) ){
+				return StatusCursoEvento.ERROR;
+			}else{
+				cursoRepository.save(cursoModel);
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println(StatusCursoEvento.ERROR + ": " + e);
+			
+		}
+		return StatusCursoEvento.SUCCESS;
+	}
+}

@@ -1,0 +1,7 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.controller;
+
+@RestController
+@RequestMapping(path = "/folha")
+public class FolhaPagamentoController {
+
+}

@@ -1,0 +1,45 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.models.FolhaPagamento;
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.service.FolhaPagamentoService;
+
+@RestController
+@RequestMapping(path = "/folha")
+public class FolhaPagamentoController {
+	
+	@Autowired
+	FolhaPagamentoService folhaPagamentoService;
+	
+	@PostMapping("/cadastrar")
+    public ResponseEntity<FolhaPagamento> createCurso(@RequestBody @Valid FolhaPagamento folhaPagamento){
+        
+        //cursoModel = converterCursoDto(cursoDto);
+        List<FolhaPagamento> folhasPagamento = new ArrayList();
+		
+        folhasPagamento = folhaPagamentoService.create(folhaPagamento);
+        
+    	//microsservice pho request 
+    	//SendEmailMicrosservice(cursoDto);
+        	
+        return new ResponseEntity<>(HttpStatus.CREATED);
+        	
+        /*}else {
+        	return new ResponseEntity<>(cursoModel, HttpStatus.CONFLICT);
+        }*/
+        
+    }
+
+}

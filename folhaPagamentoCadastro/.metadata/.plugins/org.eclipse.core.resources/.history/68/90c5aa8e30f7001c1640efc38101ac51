@@ -1,0 +1,11 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.models;
+
+public class Funcionario {
+	private String nome;
+	private String cpf;
+	
+	public Funcionario() {
+		nome = "";
+		cpf = "";
+	}
+}

@@ -1,0 +1,5 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.RabbitMQ;
+
+public class RabbitMQProducer {
+
+}

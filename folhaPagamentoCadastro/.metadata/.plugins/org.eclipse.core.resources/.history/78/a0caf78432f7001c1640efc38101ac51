@@ -1,0 +1,16 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.service.FolhaPagamentoService;
+
+@RestController
+@RequestMapping(path = "/folha")
+public class FolhaPagamentoController {
+	
+	@Autowired
+	FolhaPagamentoService folhaPagamentoService;
+
+}

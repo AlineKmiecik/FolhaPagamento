@@ -1,0 +1,12 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.folhaPagamentoCadastro.folhaPagamentoCadastro.repositories.FolhaPagamentoRepository;
+
+@Service
+public class FolhaPagamentoService {
+	@Autowired
+	FolhaPagamentoRepository folhaPagamentoRepository;
+}

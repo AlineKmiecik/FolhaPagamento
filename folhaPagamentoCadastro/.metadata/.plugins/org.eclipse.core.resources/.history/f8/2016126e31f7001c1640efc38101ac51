@@ -1,0 +1,7 @@
+server.port=8090
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+
+spring.rabbitmq.addresses= amqps://eiadrefh:gvXlygCpNI8oCZ6TdM59ss4sOQPVVSyw@moose.rmq.cloudamqp.com/eiadrefh
+spring.rabbitmq.queue= folhaPagamentoCadastro
+spring.rabbitmq.queue2= folhaPagamentoConsulta

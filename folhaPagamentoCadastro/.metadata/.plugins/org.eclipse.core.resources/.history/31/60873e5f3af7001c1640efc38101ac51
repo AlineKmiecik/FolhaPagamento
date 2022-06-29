@@ -1,0 +1,28 @@
+package com.folhaPagamentoCadastro.folhaPagamentoCadastro.RabbitMQ;
+
+@RestController
+public class RabbitMQProducer {
+
+	@Autowired
+	private RabbitTemplate template;
+	
+	
+	public String sendEmail(@RequestBody @Valid CursoModel cursoModel)  throws ClientProtocolException, IOException {
+        
+		RabbitMQConfig config = new RabbitMQConfig();
+		config.queue2();
+		
+		template.convertAndSend(cursoModel);
+        		
+		return "Email enviado";
+	}
+	
+	private CursoModel converterCursoDto (CursoDTO cursoDTO) {
+    	CursoModel cursoModel = new CursoModel();
+    	cursoModel.setAlunos(cursoDTO.getAlunos());
+    	cursoModel.setId(cursoDTO.getId());
+    	cursoModel.setNome(cursoDTO.getNome());
+    	
+    	return cursoModel;	
+    }
+}
